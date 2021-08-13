@@ -6,12 +6,10 @@ from posts.serializers import PostSerializer
 
 
 class PostDetial(generics.RetrieveUpdateDestroyAPIView):
-    permission_classes = (permissions.IsAuthenticated,)
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
 
 class PostList(generics.ListCreateAPIView):
-    permission_classes = (permissions.IsAuthenticated,)
     queryset = Post.objects.all()
     serializer_class = PostSerializer
