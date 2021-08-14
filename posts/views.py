@@ -1,36 +1,18 @@
 from django.contrib.auth import get_user_model
-from rest_condition import And, Or
-from rest_framework import generics
-from rest_framework.permissions import IsAdminUser, AllowAny
+from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
 
-# Create your views here.
 from posts.models import Post
+from posts.permissions import IsAuthorOrReadonly
 from posts.serializers import PostSerializer, UserSerializer
-from .permissions import IsAuthorOrReadonly, IsSafeMethod, IsPostMethod
 
 
-class PostDetial(generics.RetrieveUpdateDestroyAPIView):
+class PostViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthorOrReadonly,)
     queryset = Post.objects.all()
     serializer_class = PostSerializer
 
 
-class PostList(generics.ListCreateAPIView):
-    queryset = Post.objects.all()
-    serializer_class = PostSerializer
-    permission_classes = [
-        Or(
-            And(IsPostMethod, IsAdminUser),
-            And(IsSafeMethod, AllowAny),
-        )
-    ]
-
-
-class UserList(generics.ListCreateAPIView):
-    queryset = get_user_model().objects.all()
-    serializer_class = UserSerializer
-
-
-class UserDetail(generics.RetrieveUpdateDestroyAPIView):
+class UserViewSet(viewsets.ModelViewSet):
     queryset = get_user_model().objects.all()
     serializer_class = UserSerializer
