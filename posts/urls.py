@@ -1,3 +1,4 @@
+
 from rest_framework.routers import SimpleRouter
 
 from posts.views import UserViewSet, PostViewSet
