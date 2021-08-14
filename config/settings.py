@@ -35,6 +35,11 @@ INSTALLED_APPS = [
     'rest_condition',
     'rest_framework.authtoken',
     'dj_rest_auth',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'dj_rest_auth.registration',
 
     'django.contrib.admin',
     'django.contrib.auth',
@@ -134,3 +139,11 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication'
     ],
 }
+
+
+# Email backend
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Site Id
+
+SITE_ID = 1
