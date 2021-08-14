@@ -8,6 +8,7 @@ django = "*"
 djangorestframework = "*"
 django-filter = "*"
 rest-condition = "*"
+dj-rest-auth = "*"
 
 [dev-packages]
 
